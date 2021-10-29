@@ -1,6 +1,7 @@
 #include <math.h>
 #include "utils.h"
 #include "color_utils.h"
+#include <stdio.h>
 
 unsigned int	get_distortion_color(t_coord pixel,
 				struct s_setup *data, t_vector3 awt)
@@ -27,15 +28,16 @@ int	sine_wave(struct s_setup *data)
 	awt.x = 0.15;
 	awt.y = 10.0 * M_PI;
 	awt.z = 30 * M_PI / 180;
+	point.x = 0;
 	while (point.y < data->height)
 	{
+		point.x = 0;
 		while (point.x < data->width)
-		{
+		{	
 			my_pixel_put(data, point, get_distortion_color(point, data, awt),
 				data->img_address);
 			point.x++;
 		}
-		point.x = 0;
 		point.y++;
 	}
 	data->time += 0.1;
@@ -67,8 +69,12 @@ void	copy_image(struct s_setup *data)
 void	animate(struct s_setup *data)
 {
 	data->animation_img = mlx_new_image(data->mlx, data->width, data->height);
+	if (data->animation_img == 0)
+		print_error(0, data);
 	data->animation_img_address = mlx_get_data_addr(data->animation_img,
 			&(data->bits_per_pixel), &(data->size_line), &(data->endian));
+	if (data->animation_img_address == 0)
+		print_error(0, data);
 	copy_image(data);
 	data->time = 0;
 	sine_wave(data);

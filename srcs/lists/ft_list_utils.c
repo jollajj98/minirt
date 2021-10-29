@@ -18,9 +18,9 @@ unsigned int	ft_lstsize(t_list *first)
 	int		size;
 	t_list	*current;
 
-	size = 1;
+	size = 0;
 	current = first;
-	while (current->next)
+	while (current)
 	{
 		current = current->next;
 		size++;
@@ -33,8 +33,11 @@ t_list	*ft_lstlast(t_list *lst)
 	t_list	*current;
 
 	current = lst;
-	while (current->next)
-		current = current->next;
+	if (current)
+	{
+		while (current->next)
+			current = current->next;
+	}
 	return (current);
 }
 

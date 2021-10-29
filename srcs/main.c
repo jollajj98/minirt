@@ -32,6 +32,24 @@ int	initialise_scene(struct s_setup *setup)
 	return (1);
 }
 
+void	initialise_image(struct s_setup *s)
+{
+	s->mlx = mlx_init();
+	if (s->mlx == 0)
+		print_error(0, s);
+	s->window = mlx_new_window(s->mlx,
+			s->width, s->height, "minirt");
+	if (s->window == 0)
+		print_error(0, s);
+	s->image = mlx_new_image(s->mlx, s->width, s->height);
+	if (s->image == 0)
+		print_error(0, s);
+	s->img_address = mlx_get_data_addr(s->image,
+			&(s->bits_per_pixel), &(s->size_line), &(s->endian));
+	if (s->img_address == 0)
+		print_error(0, s);
+}
+
 void	initialise_data(struct s_setup *s)
 {
 	t_list	*spheres;
@@ -43,12 +61,7 @@ void	initialise_data(struct s_setup *s)
 	s->inv_width = 1. / (double)s->width;
 	s->inv_height = 1. / (double)s->height;
 	s->aspect_ratio = (double)s->width * s->inv_height;
-	s->mlx = mlx_init();
-	s->window = mlx_new_window(s->mlx,
-			s->width, s->height, "minirt");
-	s->image = mlx_new_image(s->mlx, s->width, s->height);
-	s->img_address = mlx_get_data_addr(s->image,
-			&(s->bits_per_pixel), &(s->size_line), &(s->endian));
+	initialise_image(s);
 	spheres = ft_lstnew(s->scene->spheres);
 	planes = ft_lstnew(s->scene->planes);
 	quads = ft_lstnew(s->scene->quads);
