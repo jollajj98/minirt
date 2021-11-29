@@ -34,7 +34,7 @@ You can quit the program with the esc key
 
 **Sinewave animation**
 
-![sine_wave scene](example_renders/sine_wave.png)
+![sine_wave scene](example_renders/sine_wave.gif)
 
 A layer of extra fun was added to the original 42 project assignment:
 
