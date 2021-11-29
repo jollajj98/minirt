@@ -5,14 +5,14 @@
 This is a simple raytracing project written in C.
 
 It handles: 
--triangles, 
--planes, 
--capped cylinders, 
--squares,
--spheres,
--multiple lights
--ambient light
--diffuse shading
+- triangles, 
+- planes, 
+- capped cylinders, 
+- squares,
+- spheres,
+- multiple lights
+- ambient light
+- diffuse shading
 
 **Usage**:
 
