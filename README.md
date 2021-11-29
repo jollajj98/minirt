@@ -1,4 +1,4 @@
-#### minirt
+# minirt
 
 ## C raytracing project from 42 network
 
